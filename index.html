@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>API Movies</title>
+	<script src="https://unpkg.com/vue@next"></script>
+</head>
+<body style="background-color: #FFFFFF;">
+	<div id="app">
+		<h1 style="text-align: center;">{{ title }}</h1>
+		<hr>
+
+		<!-- Realizamos el evento "submit" y le agregamos el .prevent para quitarle al boton submit el evento por defecto que es enviar el formulario y recargar la página -->
+		<form @submit.prevent="getMovie"> <!-- Le pasamos la función getMovie -->
+			<label>Movie Name: <input type="text" v-model.trim="movieTitle"></label>
+			<!-- Con v-model le pasamos el titulo por defecto que esta en las propiedades de main.js -->
+			<!-- Con .trim quitamos los espacios en blancos de los input para buscar la informacion de la pelicula -->
+			<input type="submit" value="Get Movie">	
+		</form>
+		<hr>
+
+		<div>
+			<h2 style="color: crimson;">Movie: <span style="color: black; font-size: x-large;">{{ movieData.Title }}</span></h2> <!-- Le pasamos el título -->
+			<h4 style="color: green;">Year: <span style="color: black; font-size: medium;">{{ movieData.Year }}</span></h4> <!-- Le pasamos el año -->
+			<h4 style="color: #4427F7;">Genre: <span style="color: black; font-size: medium;">{{ movieData.Genre }}</span></h4> <!-- Le pasamos el género -->
+			<h4 style="color: #F49E09;">Actors: <span style="color: black; font-size: medium;">{{ movieData.Actors }}</span></h4>  <!-- Le pasamos los actores -->
+			<img :src="movieData.Poster" :alt="movieData.imdbID">  <!-- Le pasamos el poster de la pelicula -->
+		</div>
+	</div>
+
+
+	<script src="js/main.js"></script>
+	<script src="js/mountApp.js"></script>
+	
+</body>
+</html>
